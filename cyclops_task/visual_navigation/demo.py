@@ -206,7 +206,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run ViNT waypoint inference on a numbered image sequence.")
     parser.add_argument("--image-dir", type=Path, default=ROOT / "demo_data" / "sequence")
     parser.add_argument("--config", type=Path, default=ROOT / "config.yaml")
-    parser.add_argument("--ckpt-path", type=Path, default=ROOT / "weights" / "vint_finetuned_state.pt")
+    parser.add_argument("--ckpt-path", type=Path, default=ROOT / "weights" / "vint.pt")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "outputs")
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--goal-offset", type=int, default=20)
