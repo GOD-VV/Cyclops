@@ -14,7 +14,7 @@ This is the code repository for the CoRL 2026 paper **“Cyclops: LiDAR as a Cam
   <a href="./cyclops">
     <img src="https://img.shields.io/badge/Code-Cyclops-3776AB?style=for-the-badge&amp;logo=python&amp;logoColor=white" alt="Code">
   </a>
-  <a href="./task_release">
+  <a href="./cyclops_task">
     <img src="https://img.shields.io/badge/Demos-Downstream%20Tasks-2EA44F?style=for-the-badge" alt="Downstream demos">
   </a>
 </p>
@@ -125,29 +125,29 @@ python demo.py \
 The lane-detection demo is built on [LaneATT](https://github.com/lucastabelini/LaneATT).  Before the first run, compile the bundled native CUDA NMS extension once:
 
 ```bash
-cd task_release
+cd cyclops_task
 python -m pip install --no-build-isolation ./lane_detection/lib/nms
 
 cd lane_detection
 python demo.py
 ```
-
+The model weights are available at [here](https://drive.google.com/drive/folders/1Q6RIBZEKzB_hO-7trCrHkn22zB2jFd8m?usp=drive_link).
 
 **Visual Navigation:**
 The visual-navigation demo is built on [ViNT](https://github.com/robodhruv/visualnav-transformer) 
 
 ```bash
-cd task_release/visual_navigation
+cd cyclops_task/visual_navigation
 python demo.py
 ```
 
-The bundled sequence contains frames 225–255. The default run evaluates frames 230–235 with six-frame rolling observation contexts and image goals 20 frames ahead.
+The model weights are available at [here](https://drive.google.com/drive/folders/1Q6RIBZEKzB_hO-7trCrHkn22zB2jFd8m?usp=drive_link).
 
 **Point Cloud Colorization:**
 The point-cloud release provides two ROS 1 C++ utilities:
 
-- [`extract_odom.cpp`](./task_release/point_cloud_colorization/cyclops_ros/src/extract_odom.cpp): extracts odometry aligned with accumulated LiDAR frames from rosbag files.
-- [`colorize_pcd_to_global_bag.cpp`](./task_release/point_cloud_colorization/cyclops_ros/src/colorize_pcd_to_global_bag.cpp): assigns Cyclops RGB values to the corresponding point clouds and writes camera images and colored point clouds into a rosbag.
+- [`extract_odom.cpp`](./cyclops_task/point_cloud_colorization/cyclops_ros/src/extract_odom.cpp): extracts odometry aligned with accumulated LiDAR frames from rosbag files.
+- [`colorize_pcd_to_global_bag.cpp`](./cyclops_task/point_cloud_colorization/cyclops_ros/src/colorize_pcd_to_global_bag.cpp): assigns Cyclops RGB values to the corresponding point clouds and writes camera images and colored point clouds into a rosbag.
 
 Required ROS-side dependencies include ROS 1, rosbag, `livox_ros_driver2`, PCL, OpenCV, Boost, and Eigen.
 
@@ -155,7 +155,7 @@ The provided `cyclops_ros` package can be placed in a catkin workspace and built
 
 ```bash
 mkdir -p ~/cyclops_ws/src
-cp -r task_release/point_cloud_colorization/cyclops_ros ~/cyclops_ws/src/
+cp -r cyclops_task/point_cloud_colorization/cyclops_ros ~/cyclops_ws/src/
 cd ~/cyclops_ws
 catkin build
 source devel/setup.bash
@@ -172,8 +172,7 @@ rosrun cyclops_ros colorize_pcd_to_global_bag \
   /path/to/processed_output \
   /path/to/output_bags
 ```
-
-We provide a demo [rosbag]() for cyclops Point Cloud Colorization; you can visualize it with RVIZ
+We provide a demo [rosbag](https://drive.google.com/drive/folders/1Q6RIBZEKzB_hO-7trCrHkn22zB2jFd8m?usp=drive_link) for cyclops Point Cloud Colorization; you can visualize it with RVIZ
 
 ```
 rosbag play --pause camera_and_colored_pointcloud.bag
@@ -181,7 +180,7 @@ rosbag play --pause camera_and_colored_pointcloud.bag
 
 
 ## Acknowledgements
-Part of the code references the implementation of the [Latent Bridge Matching](https://github.com/gojasper/LBM). The downstream release uses components from [SAM 2](https://github.com/facebookresearch/sam2), [LaneATT](https://github.com/lucastabelini/LaneATT), and [ViNT](https://github.com/robodhruv/visualnav-transformer) . We thank the authors for their awesome work!
+Part of the code references the implementation of the [Latent Bridge Matching](https://github.com/gojasper/LBM). The downstream release uses components from [SAM 2](https://github.com/facebookresearch/sam2), [LaneATT](https://github.com/lucastabelini/LaneATT), and [ViNT](https://github.com/robodhruv/visualnav-transformer). We thank the authors for their awesome work!
 
 ## Citation
 
