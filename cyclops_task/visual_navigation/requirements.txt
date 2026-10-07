@@ -1,0 +1,6 @@
+torch>=2.0
+torchvision>=0.15
+numpy>=1.24
+pillow>=9.4
+PyYAML>=6.0
+efficientnet-pytorch>=0.7.1

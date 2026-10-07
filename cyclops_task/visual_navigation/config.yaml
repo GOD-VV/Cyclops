@@ -1,0 +1,13 @@
+model_type: vint
+obs_encoder: efficientnet-b0
+obs_encoding_size: 512
+mha_num_attention_heads: 4
+mha_num_attention_layers: 4
+mha_ff_dim_factor: 4
+late_fusion: false
+context_size: 5
+len_traj_pred: 5
+learn_angle: true
+normalize: true
+image_size: [85, 64]
+
