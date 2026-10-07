@@ -1,0 +1,72 @@
+wandb_project: cyclops
+backbone_signature: stabilityai/stable-diffusion-xl-base-1.0
+train_data_path: ./data/train
+validation_data_path: ./data/val
+source_key: normal
+target_key: image
+mask_key: mask
+batch_size: 4
+num_gpus: 2
+max_epochs: 10
+learning_rate: 4.0e-5
+optimizer: AdamW
+seed: 42
+num_workers: 4
+accumulate_grad_batches: 1
+deterministic: false
+gradient_checkpointing: false
+
+timestep_sampling: custom_timesteps
+selected_timesteps: [0.0, 0.25, 0.5, 0.75]
+prob: [0.25, 0.25, 0.25, 0.25]
+bridge_time_values: [0.0, 0.25, 0.5, 0.75]
+bridge_noise_sigma: 0.005
+ode_num_steps: 4
+unet_input_channels: 4
+vae_num_channels: 4
+conditioning_images_keys: []
+conditioning_masks_keys: []
+
+latent_attention_dim: 64
+latent_attention_heads: 4
+
+use_lbm_core: false
+use_source_attention: true
+use_temporal_attention: true
+use_scheduled_sampling: true
+use_lpips_loss: true
+use_gradient_loss: true
+use_color_statistics_loss: true
+use_terminal_reward: true
+training_phase: phase1
+temporal_conditioning_mode: teacher
+teacher_forcing_start: 1.0
+teacher_forcing_end: 0.2
+
+pixel_loss_type: lpips
+pixel_loss_weight: 1.0
+lpips_weight: 1.0
+gradient_weight: 0.1
+color_weight: 0.05
+latent_loss_type: l2
+latent_loss_weight: 1.0
+
+reward_weight: 0.8
+reward_fidelity_weight: 1.0
+reward_temporal_weight: 0.5
+
+use_densification: false
+use_pose_warp: false
+use_temporal_stability: false
+use_rl_finetune: false
+
+num_steps: [4]
+log_interval: 500
+resume_from_checkpoint: false
+pretrained_weights_path:
+enable_checkpoint: true
+save_last: true
+save_weights_only: true
+save_top_k: 0
+checkpoint_every_n_epochs: 1
+save_ckpt_path: ./outputs/phase1
