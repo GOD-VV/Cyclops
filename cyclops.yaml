@@ -1,0 +1,57 @@
+name: cyclops
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10.18
+  - pip>=24.0
+  - setuptools>=68.0
+  - wheel>=0.43
+  - packaging>=24.0
+  - ninja>=1.11
+  - pip:
+      # Exact CUDA-enabled PyTorch stack used by the training server.
+      - --extra-index-url https://download.pytorch.org/whl/cu126
+      - torch==2.7.0+cu126
+      - torchvision==0.22.0+cu126
+
+      # Cyclops training and inference.
+      - numpy==1.26.4
+      - accelerate==1.4.0
+      - diffusers==0.32.2
+      - einops==0.7.0
+      - fire==0.7.0
+      - lightning==2.5.0
+      - pytorch-lightning==2.5.1.post0
+      - lpips==0.1.4
+      - peft==0.9.0
+      - pydantic==2.11.5
+      - safetensors==0.5.3
+      - sentencepiece==0.2.0
+      - timm==0.9.16
+      - tokenizers==0.19.1
+      - transformers==4.42.3
+      - wandb==0.16.2
+      - kornia==0.8.0
+      - PyYAML==6.0.2
+
+      # Downstream inference demos.
+      - opencv-python==4.9.0.80
+      - Pillow==11.2.1
+      - tqdm==4.67.1
+      - hydra-core==1.3.2
+      - iopath==0.1.10
+      - efficientnet-pytorch==0.7.1
+      - matplotlib>=3.7,<4.0
+
+      # Tests and formatting.
+      - pytest>=8.0,<9.0
+      - black==24.2.0
+      - isort==5.13.2
+
+      # Local package build and editable installation.
+      - hatchling>=1.27
+      - hatch-requirements-txt>=0.4
+      - -e ./cyclops
